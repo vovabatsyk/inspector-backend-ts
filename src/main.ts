@@ -7,6 +7,8 @@ async function start() {
 
   const app = await NestFactory.create(AppModule)
 
+  app.enableCors()
+
   const config = new DocumentBuilder()
     .setTitle('Управління безпеки')
     .setDescription('Відділ інспекторів з паркування')
