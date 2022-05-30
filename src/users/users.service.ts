@@ -51,4 +51,10 @@ export class UsersService {
     await user.save()
     return user
   }
+
+  async delete(id) {
+    const user = await this.userRepository.destroy({ where: { id } })
+
+    return user
+  }
 }

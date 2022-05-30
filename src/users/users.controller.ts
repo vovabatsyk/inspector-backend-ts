@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards, UsePipes } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Post, UseGuards, UsePipes } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard'
 import { Roles } from 'src/auth/roles-auth.decorator'
@@ -51,5 +51,12 @@ export class UsersController {
   @Post('/ban')
   ban(@Body() dto: BanUserDto) {
     return this.userService.ban(dto)
+  }
+
+  @ApiOperation({ summary: 'Видалити користувача' })
+  @ApiResponse({ status: 200, type: [User] })
+  @Delete(':id')
+  deletePost(@Param('id') id: string) {
+    return this.userService.delete(id)
   }
 }
