@@ -3,6 +3,7 @@ import { Model, Table, Column, DataType, BelongsToMany, HasMany } from 'sequeliz
 import { Post } from 'src/posts/post.model'
 import { Role } from 'src/roles/roles.model'
 import { UserRoles } from 'src/roles/user-roles.model'
+import { Violation } from 'src/violations/violation.model'
 
 interface UserCreationAttrs {
   email: string
@@ -41,4 +42,7 @@ export class User extends Model<User, UserCreationAttrs> {
 
   @HasMany(() => Post)
   posts: Post[]
+
+  @HasMany(() => Violation)
+  violations: Violation[]
 }

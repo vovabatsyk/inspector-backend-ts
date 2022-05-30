@@ -18,6 +18,8 @@ import { QuestionsModule } from './questions/questions.module'
 import { Question } from './questions/question.model'
 import { PaymentModule } from './payment/payment.module'
 import { Payment } from './payment/payment.model'
+import { ViolationsModule } from './violations/violations.module'
+import { Violation } from './violations/violation.model'
 
 @Module({
   controllers: [],
@@ -36,7 +38,7 @@ import { Payment } from './payment/payment.model'
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      models: [User, Role, UserRoles, Post, Notice, Question, Payment],
+      models: [User, Role, UserRoles, Post, Notice, Question, Payment, Violation],
       autoLoadModels: true,
     }),
     UsersModule,
@@ -47,6 +49,7 @@ import { Payment } from './payment/payment.model'
     NoticesModule,
     QuestionsModule,
     PaymentModule,
+    ViolationsModule,
   ],
 })
 export class AppModule {}
