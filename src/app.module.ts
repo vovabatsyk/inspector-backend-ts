@@ -11,7 +11,9 @@ import { PostsModule } from './posts/posts.module'
 import { Post } from './posts/post.model'
 import { FilesModule } from './files/files.module'
 import { ServeStaticModule } from '@nestjs/serve-static'
+import { NoticesModule } from './notices/notices.module'
 import * as path from 'path'
+import { Notice } from './notices/notise.model'
 
 @Module({
   controllers: [],
@@ -30,7 +32,7 @@ import * as path from 'path'
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      models: [User, Role, UserRoles, Post],
+      models: [User, Role, UserRoles, Post, Notice],
       autoLoadModels: true,
     }),
     UsersModule,
@@ -38,6 +40,7 @@ import * as path from 'path'
     AuthModule,
     PostsModule,
     FilesModule,
+    NoticesModule,
   ],
 })
 export class AppModule {}
