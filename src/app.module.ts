@@ -14,6 +14,8 @@ import { ServeStaticModule } from '@nestjs/serve-static'
 import { NoticesModule } from './notices/notices.module'
 import * as path from 'path'
 import { Notice } from './notices/notise.model'
+import { QuestionsModule } from './questions/questions.module'
+import { Question } from './questions/question.model'
 
 @Module({
   controllers: [],
@@ -32,7 +34,7 @@ import { Notice } from './notices/notise.model'
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      models: [User, Role, UserRoles, Post, Notice],
+      models: [User, Role, UserRoles, Post, Notice, Question],
       autoLoadModels: true,
     }),
     UsersModule,
@@ -41,6 +43,7 @@ import { Notice } from './notices/notise.model'
     PostsModule,
     FilesModule,
     NoticesModule,
+    QuestionsModule,
   ],
 })
 export class AppModule {}

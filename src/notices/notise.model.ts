@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { Model, Table, Column, DataType, BelongsTo, ForeignKey } from 'sequelize-typescript'
-import { User } from 'src/users/user.model'
+import { Model, Table, Column, DataType } from 'sequelize-typescript'
 
 interface NoticeCreationAttrs {
   title: string
