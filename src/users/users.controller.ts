@@ -46,7 +46,7 @@ export class UsersController {
   @UseGuards(JwtAuthGuard)
   @Roles('admin')
   @UseGuards(RolesGuard)
-  @Post('/role')
+  @Post('/ban')
   ban(@Body() dto: BanUserDto) {
     return this.userService.ban(dto)
   }
