@@ -49,9 +49,9 @@ export class PostsController {
   }
 
   @ApiOperation({ summary: 'Змінити новину' })
-  @ApiResponse({ status: 200, type: [Post] })
+  @ApiResponse({ status: 200 })
   @Put(':id')
-  updatePost(@Body() dto: CreatePostDto, @Param('id') id: string) {
-    return this.postService.update(dto, id)
+  updatePost(@Param('id') id: string, @Body() dto: CreatePostDto) {
+    return this.postService.update(id, dto)
   }
 }

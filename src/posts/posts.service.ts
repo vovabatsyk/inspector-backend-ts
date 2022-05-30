@@ -33,7 +33,7 @@ export class PostsService {
     return post
   }
 
-  async update(dto: CreatePostDto, id) {
+  async update(id, dto: CreatePostDto) {
     const post = await this.postRepository.update({ ...dto }, { where: { id } })
     return post
   }
