@@ -9,7 +9,6 @@ export class ViolationsService {
 
   async create(dto: CreateViolationDto) {
     const violation = await this.violationRepository.create(dto)
-
     return violation
   }
 

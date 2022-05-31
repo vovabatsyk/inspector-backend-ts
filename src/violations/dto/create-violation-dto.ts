@@ -23,5 +23,5 @@ export class CreateViolationDto {
   readonly photos: string
 
   @ApiProperty({ example: '1', description: 'Ідентифікатор користувача' })
-  readonly idUser: number
+  readonly userId: number
 }

@@ -3,10 +3,14 @@ import { Model, Table, Column, DataType, BelongsTo, ForeignKey } from 'sequelize
 import { User } from 'src/users/user.model'
 
 interface ViolationCreationAttrs {
-  title: string
-  content: string
+  violation_number: string
+  date: string
+  car_mark: string
+  car_model: string
+  car_number: string
+  photos: string
+  address: string
   userId: number
-  image: string
 }
 
 @Table({ tableName: 'violations' })
