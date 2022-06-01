@@ -31,6 +31,14 @@ export class UsersService {
     return user
   }
 
+  async getById(id) {
+    const user = await this.userRepository.findByPk(id)
+    if (user) {
+      return user
+    }
+    throw new HttpException('Користувача не знайдено', HttpStatus.NOT_FOUND)
+  }
+
   async addRole(dto: AddRoleDto) {
     const user = await this.userRepository.findByPk(dto.userId)
     const role = await this.roleService.getRoleByValue(dto.value)

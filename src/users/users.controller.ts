@@ -33,6 +33,13 @@ export class UsersController {
     return this.userService.getAllUsers()
   }
 
+  @ApiOperation({ summary: 'Получити користувача' })
+  @ApiResponse({ status: 200, type: [User] })
+  @Get(':id')
+  getById(@Param('id') id: string) {
+    return this.userService.getById(id)
+  }
+
   @ApiOperation({ summary: 'Змінити тип користувача' })
   @ApiResponse({ status: 200 })
   @UseGuards(JwtAuthGuard)
