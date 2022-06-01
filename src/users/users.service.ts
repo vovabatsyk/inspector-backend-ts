@@ -15,7 +15,7 @@ export class UsersService {
 
   async createUser(dto: CreateUserDto) {
     const user = await this.userRepository.create(dto)
-    const role = await this.roleService.getRoleByValue('admin')
+    const role = await this.roleService.getRoleByValue('new')
     await user.$set('roles', [role.id])
     user.roles = [role]
     return user
@@ -32,7 +32,7 @@ export class UsersService {
   }
 
   async getById(id) {
-    const user = await this.userRepository.findByPk(id)
+    const user = await this.userRepository.findByPk(id, { include: { all: true } })
     if (user) {
       return user
     }
@@ -63,6 +63,11 @@ export class UsersService {
   async delete(id) {
     const user = await this.userRepository.destroy({ where: { id } })
 
+    return user
+  }
+
+  async update(id, dto: CreateUserDto) {
+    const user = await this.userRepository.update({ ...dto }, { where: { id } })
     return user
   }
 }

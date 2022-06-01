@@ -1,4 +1,14 @@
-import { Body, Controller, Delete, Get, Param, Post, UseGuards, UsePipes } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseGuards,
+  UsePipes,
+} from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard'
 import { Roles } from 'src/auth/roles-auth.decorator'
@@ -26,7 +36,7 @@ export class UsersController {
   @ApiOperation({ summary: 'Всі користувачі' })
   @ApiResponse({ status: 200, type: [User] })
   @UseGuards(JwtAuthGuard)
-  @Roles('admin')
+  @Roles('admin', 'street')
   @UseGuards(RolesGuard)
   @Get()
   getAll() {
@@ -62,8 +72,21 @@ export class UsersController {
 
   @ApiOperation({ summary: 'Видалити користувача' })
   @ApiResponse({ status: 200, type: [User] })
+  @UseGuards(JwtAuthGuard)
+  @Roles('admin')
+  @UseGuards(RolesGuard)
   @Delete(':id')
   deletePost(@Param('id') id: string) {
     return this.userService.delete(id)
+  }
+
+  @ApiOperation({ summary: 'Змінити користувача' })
+  @ApiResponse({ status: 200 })
+  @UseGuards(JwtAuthGuard)
+  @Roles('admin')
+  @UseGuards(RolesGuard)
+  @Put(':id')
+  updatePost(@Param('id') id: string, @Body() dto: CreateUserDto) {
+    return this.userService.update(id, dto)
   }
 }

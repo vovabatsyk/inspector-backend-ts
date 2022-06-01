@@ -27,7 +27,6 @@ export class AuthService {
 
     const hashPassword = await bcrypt.hash(userDto.password, 5)
     const user = await this.userService.createUser({ ...userDto, password: hashPassword })
-    console.log('user', user)
 
     return this.generateToken(user)
   }
