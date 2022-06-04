@@ -20,6 +20,7 @@ import { PaymentModule } from './payment/payment.module'
 import { Payment } from './payment/payment.model'
 import { ViolationsModule } from './violations/violations.module'
 import { Violation } from './violations/violation.model'
+import { ViolationImagesModule } from './violation-images/violation-images.module';
 
 @Module({
   controllers: [],
@@ -50,6 +51,7 @@ import { Violation } from './violations/violation.model'
     QuestionsModule,
     PaymentModule,
     ViolationsModule,
+    ViolationImagesModule,
   ],
 })
 export class AppModule {}
