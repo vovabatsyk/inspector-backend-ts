@@ -1,6 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { Model, Table, Column, DataType, BelongsTo, ForeignKey } from 'sequelize-typescript'
+import {
+  Model,
+  Table,
+  Column,
+  DataType,
+  BelongsTo,
+  ForeignKey,
+  HasMany,
+} from 'sequelize-typescript'
 import { User } from 'src/users/user.model'
+import { ViolationImages } from 'src/violation-images/violation-images.model'
 
 interface ViolationCreationAttrs {
   violation_number: string
@@ -54,4 +63,7 @@ export class Violation extends Model<Violation, ViolationCreationAttrs> {
 
   @BelongsTo(() => User)
   author: User
+
+  @HasMany(() => ViolationImages)
+  posts: ViolationImages[]
 }

@@ -20,7 +20,8 @@ import { PaymentModule } from './payment/payment.module'
 import { Payment } from './payment/payment.model'
 import { ViolationsModule } from './violations/violations.module'
 import { Violation } from './violations/violation.model'
-import { ViolationImagesModule } from './violation-images/violation-images.module';
+import { ViolationImagesModule } from './violation-images/violation-images.module'
+import { ViolationImages } from './violation-images/violation-images.model'
 
 @Module({
   controllers: [],
@@ -39,7 +40,7 @@ import { ViolationImagesModule } from './violation-images/violation-images.modul
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      models: [User, Role, UserRoles, Post, Notice, Question, Payment, Violation],
+      models: [User, Role, UserRoles, Post, Notice, Question, Payment, Violation, ViolationImages],
       autoLoadModels: true,
     }),
     UsersModule,
