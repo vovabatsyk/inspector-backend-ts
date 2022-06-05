@@ -1,12 +1,22 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/sequelize'
+import { FilesService } from 'src/files/files.service'
+import { CreateViolationImagesDto } from './dto/create-violation-images.dto'
 import { ViolationImages } from './violation-images.model'
 
 @Injectable()
 export class ViolationImagesService {
   constructor(
-    @InjectModel(ViolationImages) private violationImagesRepository: typeof ViolationImages
+    @InjectModel(ViolationImages) private violationImagesRepository: typeof ViolationImages,
+    private fileService: FilesService
   ) {}
+
+  async create(dto: CreateViolationImagesDto, images: string[]) {
+    images.forEach(async (image) => {
+      const fileName = await this.fileService.createFile(image)
+      const post = await this.violationImagesRepository.create({ ...dto, image: fileName })
+    })
+  }
 
   async getAll() {
     const violationImages = await this.violationImagesRepository.findAll()

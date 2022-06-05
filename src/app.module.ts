@@ -22,6 +22,8 @@ import { ViolationsModule } from './violations/violations.module'
 import { Violation } from './violations/violation.model'
 import { ViolationImagesModule } from './violation-images/violation-images.module'
 import { ViolationImages } from './violation-images/violation-images.model'
+import { ViolationStoryModule } from './violation-story/violation-story.module'
+import { ViolationStory } from './violation-story/violation-story.model'
 
 @Module({
   controllers: [],
@@ -40,7 +42,18 @@ import { ViolationImages } from './violation-images/violation-images.model'
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      models: [User, Role, UserRoles, Post, Notice, Question, Payment, Violation, ViolationImages],
+      models: [
+        User,
+        Role,
+        UserRoles,
+        Post,
+        Notice,
+        Question,
+        Payment,
+        Violation,
+        ViolationImages,
+        ViolationStory,
+      ],
       autoLoadModels: true,
     }),
     UsersModule,
@@ -53,6 +66,7 @@ import { ViolationImages } from './violation-images/violation-images.model'
     PaymentModule,
     ViolationsModule,
     ViolationImagesModule,
+    ViolationStoryModule,
   ],
 })
 export class AppModule {}

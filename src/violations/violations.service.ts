@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/sequelize'
 import { CreateViolationDto } from './dto/create-violation-dto'
 import { Violation } from './violation.model'
@@ -20,6 +20,18 @@ export class ViolationsService {
   async getById(id) {
     const violation = await this.violationRepository.findByPk(id)
     return violation
+  }
+
+  async getByParams(car_number: string) {
+    const violations = await this.violationRepository.findAll({
+      where: { car_number },
+    })
+
+    if (violations.length) {
+      return violations
+    }
+
+    throw new HttpException('Нічого не знайдено', HttpStatus.NOT_FOUND)
   }
 
   async delete(id) {

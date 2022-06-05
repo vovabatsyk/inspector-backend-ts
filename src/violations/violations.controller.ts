@@ -30,6 +30,13 @@ export class ViolationsController {
     return this.violationService.getById(id)
   }
 
+  @ApiOperation({ summary: 'Получити порушення  по пошуку' })
+  @ApiResponse({ status: 200, type: [Violation] })
+  @Get('car_number/:car_number')
+  getByParam(@Param('car_number') car_number: string) {
+    return this.violationService.getByParams(car_number)
+  }
+
   @ApiOperation({ summary: 'Видалити порушення' })
   @ApiResponse({ status: 200, type: [Post] })
   @Delete(':id')
