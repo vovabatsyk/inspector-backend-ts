@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/sequelize'
 import { CreatePaymentDto } from './dto/create-payment.dto'
 import { Payment } from './payment.model'
@@ -9,28 +9,44 @@ export class PaymentService {
 
   async create(dto: CreatePaymentDto) {
     const payment = await this.paymentRepository.create(dto)
-
-    return payment
+    if (payment) {
+      return payment
+    }
+    throw new HttpException('Помилка створення платіжки', HttpStatus.BAD_REQUEST)
   }
 
   async getAll() {
     const payments = await this.paymentRepository.findAll()
+    if (payments) {
+      return payments
+    }
 
-    return payments
+    throw new HttpException('Помилка загрузки платіжок', HttpStatus.BAD_REQUEST)
   }
 
   async getById(id) {
     const payment = await this.paymentRepository.findByPk(id)
-    return payment
+    if (payment) {
+      return payment
+    }
+    throw new HttpException('Помилка пошуку платіжки по id', HttpStatus.NOT_FOUND)
   }
 
   async delete(id) {
     const payment = this.paymentRepository.destroy({ where: { id } })
-    return payment
+    if (payment) {
+      return payment
+    }
+
+    throw new HttpException('Помилка видалення платіжки по id', HttpStatus.NOT_FOUND)
   }
 
   async update(id, dto: CreatePaymentDto) {
     const payment = await this.paymentRepository.update({ ...dto }, { where: { id } })
-    return payment
+    if (payment) {
+      return payment
+    }
+
+    throw new HttpException('Помилка оновлення платіжки по id', HttpStatus.BAD_REQUEST)
   }
 }

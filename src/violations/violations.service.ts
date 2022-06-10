@@ -9,17 +9,30 @@ export class ViolationsService {
 
   async create(dto: CreateViolationDto) {
     const violation = await this.violationRepository.create(dto)
-    return violation
+
+    if (violation) {
+      return violation
+    }
+
+    throw new HttpException('Помилка створення порушення', HttpStatus.BAD_REQUEST)
   }
 
   async getAll() {
     const violations = await this.violationRepository.findAll()
-    return violations
+    if (violations) {
+      return violations
+    }
+
+    throw new HttpException('Помилка загрузки порушеннь', HttpStatus.BAD_REQUEST)
   }
 
   async getById(id) {
     const violation = await this.violationRepository.findByPk(id)
-    return violation
+    if (violation) {
+      return violation
+    }
+
+    throw new HttpException('Помилка пошуку порушення по id', HttpStatus.NOT_FOUND)
   }
 
   async getByParams(car_number: string) {
@@ -27,7 +40,7 @@ export class ViolationsService {
       where: { car_number },
     })
 
-    if (violations.length) {
+    if (violations) {
       return violations
     }
 
@@ -36,11 +49,19 @@ export class ViolationsService {
 
   async delete(id) {
     const violation = this.violationRepository.destroy({ where: { id } })
-    return violation
+    if (violation) {
+      return violation
+    }
+
+    throw new HttpException('Помилка видалення порушення по id', HttpStatus.BAD_REQUEST)
   }
 
   async update(id, dto: CreateViolationDto) {
     const violation = await this.violationRepository.update({ ...dto }, { where: { id } })
-    return violation
+    if (violation) {
+      return violation
+    }
+
+    throw new HttpException('Помилка оновлення порушення по id', HttpStatus.BAD_REQUEST)
   }
 }

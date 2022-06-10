@@ -14,7 +14,7 @@ export class ViolationImagesService {
   async create(dto: CreateViolationImagesDto, images: string[]) {
     images.forEach(async (image) => {
       const fileName = await this.fileService.createFile(image)
-      const post = await this.violationImagesRepository.create({ ...dto, image: fileName })
+      await this.violationImagesRepository.create({ ...dto, image: fileName })
     })
   }
 

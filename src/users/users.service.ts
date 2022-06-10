@@ -23,12 +23,20 @@ export class UsersService {
 
   async getAllUsers() {
     const users = await this.userRepository.findAll({ include: { all: true } })
-    return users
+    if (users) {
+      return users
+    }
+
+    throw new HttpException('Помилка загрузки користувачів', HttpStatus.BAD_REQUEST)
   }
 
   async getUserByEmail(email: string) {
     const user = await this.userRepository.findOne({ where: { email }, include: { all: true } })
-    return user
+    if (user) {
+      return user
+    }
+
+    throw new HttpException('Помилка загрузки користувача по email', HttpStatus.NOT_FOUND)
   }
 
   async getById(id) {
@@ -62,12 +70,19 @@ export class UsersService {
 
   async delete(id) {
     const user = await this.userRepository.destroy({ where: { id } })
+    if (user) {
+      return user
+    }
 
-    return user
+    throw new HttpException('Помилка видалення користувача по id', HttpStatus.BAD_REQUEST)
   }
 
   async update(id, dto: CreateUserDto) {
     const user = await this.userRepository.update({ ...dto }, { where: { id } })
-    return user
+    if (user) {
+      return user
+    }
+
+    throw new HttpException('Помилка оновлення користувача по id', HttpStatus.BAD_REQUEST)
   }
 }

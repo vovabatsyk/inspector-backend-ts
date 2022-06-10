@@ -19,9 +19,9 @@ export class CreateViolationDto {
   @ApiProperty({ example: 'вул. Гавришкевича 6', description: 'Адреса порушення' })
   readonly address: string
 
-  @ApiProperty({ example: 'image.jpg', description: 'Фото порушення' })
-  readonly photos: string
-
   @ApiProperty({ example: '1', description: 'Ідентифікатор користувача' })
   readonly userId: number
+
+  @ApiProperty({ example: '1', description: 'Ідентифікатор фабули' })
+  readonly violationStoryId: number
 }

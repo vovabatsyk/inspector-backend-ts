@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { Model, Table, Column, DataType } from 'sequelize-typescript'
+import { Model, Table, Column, DataType, HasMany } from 'sequelize-typescript'
+import { Violation } from 'src/violations/violation.model'
 
 interface ViolationStoryCreationAttrs {
   title: string
@@ -23,4 +24,7 @@ export class ViolationStory extends Model<ViolationStory, ViolationStoryCreation
   })
   @Column({ type: DataType.STRING, allowNull: false })
   description: string
+
+  @HasMany(() => Violation)
+  posts: Violation[]
 }
