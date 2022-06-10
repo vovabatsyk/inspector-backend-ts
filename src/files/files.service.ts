@@ -19,4 +19,13 @@ export class FilesService {
       throw new HttpException('Помилка збереження файла', HttpStatus.INTERNAL_SERVER_ERROR)
     }
   }
+
+  async deleteFile(filename: string) {
+    try {
+      const filePath = path.resolve(__dirname, '..', 'static')
+      fs.unlinkSync(path.join(filePath, filename))
+    } catch (err) {
+      throw new HttpException('Помилка видалення файла', HttpStatus.INTERNAL_SERVER_ERROR)
+    }
+  }
 }

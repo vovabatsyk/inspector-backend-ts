@@ -41,10 +41,14 @@ export class PostsService {
   }
 
   async delete(id) {
-    const post = this.postRepository.destroy({ where: { id } })
+    const post = await this.postRepository.findByPk(id)
+    if (post) {
+      this.fileService.deleteFile(post.image)
+    }
+    const postDeleted = this.postRepository.destroy({ where: { id } })
 
     if (post) {
-      return post
+      return postDeleted
     }
     throw new HttpException('Помилка видалення новини по id', HttpStatus.NOT_FOUND)
   }
