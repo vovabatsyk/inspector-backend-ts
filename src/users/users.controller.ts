@@ -27,6 +27,9 @@ export class UsersController {
 
   @ApiOperation({ summary: 'Створити користувача' })
   @ApiResponse({ status: 200, type: User })
+  @UseGuards(JwtAuthGuard)
+  @Roles('admin')
+  @UseGuards(RolesGuard)
   // @UsePipes(ValidationPipe)
   @Post()
   create(@Body() userDto: CreateUserDto) {
@@ -36,7 +39,7 @@ export class UsersController {
   @ApiOperation({ summary: 'Всі користувачі' })
   @ApiResponse({ status: 200, type: [User] })
   @UseGuards(JwtAuthGuard)
-  @Roles('admin', 'street')
+  @Roles('admin', 'office')
   @UseGuards(RolesGuard)
   @Get()
   getAll() {
@@ -45,6 +48,9 @@ export class UsersController {
 
   @ApiOperation({ summary: 'Получити користувача' })
   @ApiResponse({ status: 200, type: [User] })
+  @UseGuards(JwtAuthGuard)
+  @Roles('admin', 'office', 'street')
+  @UseGuards(RolesGuard)
   @Get(':id')
   getById(@Param('id') id: string) {
     return this.userService.getById(id)

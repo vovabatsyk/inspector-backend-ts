@@ -1,6 +1,16 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { Model, Table, Column, DataType, BelongsTo, ForeignKey } from 'sequelize-typescript'
+import {
+  Model,
+  Table,
+  Column,
+  DataType,
+  BelongsTo,
+  ForeignKey,
+  HasMany,
+} from 'sequelize-typescript'
 import { User } from 'src/users/user.model'
+import { ViolationImages } from 'src/violation-images/violation-images.model'
+import { ViolationStory } from 'src/violation-story/violation-story.model'
 
 interface ViolationCreationAttrs {
   violation_number: string
@@ -8,9 +18,9 @@ interface ViolationCreationAttrs {
   car_mark: string
   car_model: string
   car_number: string
-  photos: string
   address: string
   userId: number
+  violationStoryId: number
 }
 
 @Table({ tableName: 'violations' })
@@ -43,10 +53,6 @@ export class Violation extends Model<Violation, ViolationCreationAttrs> {
   @Column({ type: DataType.STRING, allowNull: false })
   address: string
 
-  @ApiProperty({ example: 'image.jpg', description: 'Фото порушення' })
-  @Column({ type: DataType.STRING, allowNull: false })
-  photos: string
-
   @ApiProperty({ example: '1', description: 'Ідентифікатор користувача' })
   @ForeignKey(() => User)
   @Column({ type: DataType.INTEGER })
@@ -54,4 +60,15 @@ export class Violation extends Model<Violation, ViolationCreationAttrs> {
 
   @BelongsTo(() => User)
   author: User
+
+  @HasMany(() => ViolationImages)
+  posts: ViolationImages[]
+
+  @ApiProperty({ example: '1', description: 'Ідентифікатор фабули' })
+  @ForeignKey(() => ViolationStory)
+  @Column({ type: DataType.INTEGER })
+  violationStoryId: number
+
+  @BelongsTo(() => ViolationStory)
+  story: ViolationStory
 }
