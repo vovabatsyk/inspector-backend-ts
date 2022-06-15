@@ -1,11 +1,15 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/sequelize'
+import { ViolationImagesService } from 'src/violation-images/violation-images.service'
 import { CreateViolationDto } from './dto/create-violation-dto'
 import { Violation } from './violation.model'
 
 @Injectable()
 export class ViolationsService {
-  constructor(@InjectModel(Violation) private violationRepository: typeof Violation) {}
+  constructor(
+    @InjectModel(Violation) private violationRepository: typeof Violation,
+    private violationImagesService: ViolationImagesService
+  ) {}
 
   async create(dto: CreateViolationDto) {
     const violation = await this.violationRepository.create(dto)
@@ -48,6 +52,11 @@ export class ViolationsService {
   }
 
   async delete(id) {
+    const images = this.violationImagesService.getByValue(id).then((im) => {
+      console.log('im', im)
+    })
+    console.log('images', images)
+
     const violation = this.violationRepository.destroy({ where: { id } })
     if (violation) {
       return violation

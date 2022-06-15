@@ -15,5 +15,6 @@ import { ViolationImagesService } from './violation-images.service'
     FilesModule,
     forwardRef(() => AuthModule),
   ],
+  exports: [ViolationImagesService],
 })
 export class ViolationImagesModule {}
