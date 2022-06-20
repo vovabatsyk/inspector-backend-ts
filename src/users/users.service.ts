@@ -15,7 +15,7 @@ export class UsersService {
 
   async createUser(dto: CreateUserDto) {
     const user = await this.userRepository.create(dto)
-    const role = await this.roleService.getRoleByValue('new')
+    const role = await this.roleService.getRoleByValue('admin')
     await user.$set('roles', [role.id])
     user.roles = [role]
     return user
@@ -32,11 +32,7 @@ export class UsersService {
 
   async getUserByEmail(email: string) {
     const user = await this.userRepository.findOne({ where: { email }, include: { all: true } })
-    if (user) {
-      return user
-    }
-
-    throw new HttpException('Помилка загрузки користувача по email', HttpStatus.NOT_FOUND)
+    return user
   }
 
   async getById(id) {

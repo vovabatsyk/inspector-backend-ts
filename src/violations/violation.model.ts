@@ -9,6 +9,7 @@ import {
   HasMany,
 } from 'sequelize-typescript'
 import { User } from 'src/users/user.model'
+import { ViolationAdmin } from 'src/violation-admin/violation-admin.model'
 import { ViolationImages } from 'src/violation-images/violation-images.model'
 import { ViolationStory } from 'src/violation-story/violation-story.model'
 
@@ -60,6 +61,14 @@ export class Violation extends Model<Violation, ViolationCreationAttrs> {
 
   @BelongsTo(() => User)
   author: User
+
+  @ApiProperty({ example: '1', description: 'Ідентифікатор статті' })
+  @ForeignKey(() => ViolationAdmin)
+  @Column({ type: DataType.INTEGER })
+  violationAdminId: number
+
+  @BelongsTo(() => ViolationAdmin)
+  violationAdmin: ViolationAdmin
 
   @HasMany(() => ViolationImages)
   posts: ViolationImages[]

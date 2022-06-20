@@ -15,8 +15,6 @@ export class ViolationStoryController {
   @ApiOperation({ summary: 'Створити фабулу' })
   @ApiResponse({ status: 200, type: [ViolationStory] })
   @UseGuards(JwtAuthGuard)
-  @Roles('admin')
-  @UseGuards(RolesGuard)
   @Post()
   createPost(@Body() dto: CreateViolationStoryDto) {
     return this.storyService.create(dto)

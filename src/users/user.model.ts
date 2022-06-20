@@ -26,7 +26,7 @@ export class User extends Model<User, UserCreationAttrs> {
   password: string
 
   @ApiProperty({ example: 'Володимир Васильович Зенько', description: 'П.І.Б' })
-  @Column({ type: DataType.STRING, unique: true, allowNull: false })
+  @Column({ type: DataType.STRING, allowNull: false })
   username: string
 
   @ApiProperty({ example: 'false', description: 'Заблокувати користувача' })

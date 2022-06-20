@@ -26,5 +26,5 @@ export class ViolationStory extends Model<ViolationStory, ViolationStoryCreation
   description: string
 
   @HasMany(() => Violation)
-  posts: Violation[]
+  violations: Violation[]
 }

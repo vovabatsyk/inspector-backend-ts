@@ -25,9 +25,6 @@ export class ViolationImagesController {
 
   @ApiOperation({ summary: 'Завантажити зображення' })
   @ApiResponse({ status: 200 })
-  @UseGuards(JwtAuthGuard)
-  @Roles('admin', 'office', 'street')
-  @UseGuards(RolesGuard)
   @Post()
   @UseInterceptors(FilesInterceptor('image'))
   createPost(@Body() dto: CreateViolationImagesDto, @UploadedFiles() images) {

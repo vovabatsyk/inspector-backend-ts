@@ -15,7 +15,7 @@ export class Role extends Model<Role, RoleCreationAttrs> {
   id: number
 
   @ApiProperty({ example: 'admin', description: 'Тип користувача' })
-  @Column({ type: DataType.STRING, unique: true, allowNull: false })
+  @Column({ type: DataType.STRING, allowNull: false })
   value: string
 
   @ApiProperty({ example: 'Адміністратор', description: 'Опис типу користувача' })

@@ -20,9 +20,6 @@ export class RolesController {
   }
 
   @ApiOperation({ summary: 'Створити тип користувача' })
-  @UseGuards(JwtAuthGuard)
-  @Roles('admin')
-  @UseGuards(RolesGuard)
   @Post()
   create(@Body() dto: CreateRoleDto) {
     return this.roleService.createRole(dto)

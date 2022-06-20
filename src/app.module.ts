@@ -24,6 +24,8 @@ import { ViolationImagesModule } from './violation-images/violation-images.modul
 import { ViolationImages } from './violation-images/violation-images.model'
 import { ViolationStoryModule } from './violation-story/violation-story.module'
 import { ViolationStory } from './violation-story/violation-story.model'
+import { ViolationAdminModule } from './violation-admin/violation-admin.module'
+import { ViolationAdmin } from './violation-admin/violation-admin.model'
 
 @Module({
   controllers: [],
@@ -37,11 +39,11 @@ import { ViolationStory } from './violation-story/violation-story.model'
     }),
     SequelizeModule.forRoot({
       dialect: 'mariadb',
-      host: process.env.DB_HOST,
-      port: Number(process.env.DB_PORT),
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: 'root',
+      database: 'inspector_db',
       models: [
         User,
         Role,
@@ -53,6 +55,7 @@ import { ViolationStory } from './violation-story/violation-story.model'
         Violation,
         ViolationImages,
         ViolationStory,
+        ViolationAdmin,
       ],
       autoLoadModels: true,
     }),
@@ -67,6 +70,7 @@ import { ViolationStory } from './violation-story/violation-story.model'
     ViolationsModule,
     ViolationImagesModule,
     ViolationStoryModule,
+    ViolationAdminModule,
   ],
 })
 export class AppModule {}
