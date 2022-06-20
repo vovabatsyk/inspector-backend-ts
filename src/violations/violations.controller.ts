@@ -14,9 +14,6 @@ export class ViolationsController {
 
   @ApiOperation({ summary: 'Створити порушення' })
   @ApiResponse({ status: 200, type: [Violation] })
-  @UseGuards(JwtAuthGuard)
-  @Roles('admin', 'street', 'office')
-  @UseGuards(RolesGuard)
   @Post()
   createPost(@Body() dto: CreateViolationDto) {
     return this.violationService.create(dto)
@@ -46,17 +43,17 @@ export class ViolationsController {
   @ApiOperation({ summary: 'Видалити порушення' })
   @ApiResponse({ status: 200, type: [Post] })
   @UseGuards(JwtAuthGuard)
-  @Roles('admin', 'office')
+  @Roles('admin')
   @UseGuards(RolesGuard)
   @Delete(':id')
   deletePost(@Param('id') id: string) {
     return this.violationService.delete(id)
   }
 
-  @ApiOperation({ summary: 'Змінити новину' })
+  @ApiOperation({ summary: 'Змінити порушення' })
   @ApiResponse({ status: 200 })
   @UseGuards(JwtAuthGuard)
-  @Roles('admin', 'office')
+  @Roles('admin')
   @UseGuards(RolesGuard)
   @Put(':id')
   updatePost(@Param('id') id: string, @Body() dto: CreateViolationDto) {
