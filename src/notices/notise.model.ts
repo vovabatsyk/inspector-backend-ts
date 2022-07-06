@@ -15,7 +15,7 @@ export class Notice extends Model<Notice, NoticeCreationAttrs> {
   id: number
 
   @ApiProperty({ example: 'Заголовок 1', description: 'Тема новини' })
-  @Column({ type: DataType.STRING, allowNull: true })
+  @Column({ type: DataType.STRING(1020), allowNull: true })
   title: string
 
   @ApiProperty({ example: 'Текст', description: 'Текст' })

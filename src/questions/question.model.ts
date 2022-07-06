@@ -17,6 +17,6 @@ export class Question extends Model<Question, QuestionCreationAttrs> {
   title: string
 
   @ApiProperty({ example: 'Текст', description: 'Текст' })
-  @Column({ type: DataType.STRING, allowNull: false })
+  @Column({ type: DataType.STRING(1020), allowNull: false })
   description: string
 }

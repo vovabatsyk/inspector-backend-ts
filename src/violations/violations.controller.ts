@@ -50,13 +50,13 @@ export class ViolationsController {
     return this.violationService.delete(id)
   }
 
-  @ApiOperation({ summary: 'Змінити порушення' })
-  @ApiResponse({ status: 200 })
-  @UseGuards(JwtAuthGuard)
-  @Roles('admin')
-  @UseGuards(RolesGuard)
-  @Put(':id')
-  updatePost(@Param('id') id: string, @Body() dto: CreateViolationDto) {
-    return this.violationService.update(id, dto)
-  }
+  // @ApiOperation({ summary: 'Змінити порушення' })
+  // @ApiResponse({ status: 200 })
+  // @UseGuards(JwtAuthGuard)
+  // @Roles('admin')
+  // @UseGuards(RolesGuard)
+  // @Put(':id')
+  // updatePost(@Param('id') id: string, @Body() dto: CreateViolationDto) {
+  //   return this.violationService.update(id, dto)
+  // }
 }

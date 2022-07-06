@@ -4,6 +4,9 @@ export class CreateViolationDto {
   @ApiProperty({ example: '0001', description: 'Номер постанови' })
   readonly violation_number: string
 
+  @ApiProperty({ example: '0001', description: 'Номер постанови Unip' })
+  readonly unip_id: number
+
   @ApiProperty({ example: '22.04.2022 12:14', description: 'Дата і час порушення' })
   readonly date: string
 

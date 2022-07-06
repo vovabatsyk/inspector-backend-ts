@@ -1,6 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/sequelize'
-import { isValidationOptions } from 'class-validator'
 import { CreateNoticeDto } from './dto/create-notice.dto'
 import { Notice } from './notise.model'
 

@@ -26,6 +26,8 @@ import { ViolationStoryModule } from './violation-story/violation-story.module'
 import { ViolationStory } from './violation-story/violation-story.model'
 import { ViolationAdminModule } from './violation-admin/violation-admin.module'
 import { ViolationAdmin } from './violation-admin/violation-admin.model'
+import { TokenModule } from './token/token.module'
+import { Token } from './token/token.model'
 
 @Module({
   controllers: [],
@@ -56,6 +58,7 @@ import { ViolationAdmin } from './violation-admin/violation-admin.model'
         ViolationImages,
         ViolationStory,
         ViolationAdmin,
+        Token,
       ],
       autoLoadModels: true,
     }),
@@ -71,6 +74,7 @@ import { ViolationAdmin } from './violation-admin/violation-admin.model'
     ViolationImagesModule,
     ViolationStoryModule,
     ViolationAdminModule,
+    TokenModule,
   ],
 })
 export class AppModule {}
