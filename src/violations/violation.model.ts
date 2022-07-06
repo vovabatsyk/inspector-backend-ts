@@ -22,13 +22,18 @@ interface ViolationCreationAttrs {
   address: string
   userId: number
   violationStoryId: number
+  unip_id: number
 }
 
 @Table({ tableName: 'violations' })
 export class Violation extends Model<Violation, ViolationCreationAttrs> {
-  @ApiProperty({ example: '1', description: 'Ідентифікатор новини' })
+  @ApiProperty({ example: '1', description: 'Ідентифікатор постанови' })
   @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
   id: number
+
+  @ApiProperty({ example: '0001', description: 'Ідентифікатор постанови Unip ' })
+  @Column({ type: DataType.INTEGER, allowNull: true })
+  unip_id: string
 
   @ApiProperty({ example: '0001', description: 'Номер постанови' })
   @Column({ type: DataType.STRING, allowNull: false })

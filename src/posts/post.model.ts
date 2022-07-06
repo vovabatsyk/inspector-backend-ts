@@ -16,11 +16,11 @@ export class Post extends Model<Post, PostCreationAttrs> {
   id: number
 
   @ApiProperty({ example: 'Заголовок 1', description: 'Тема новини' })
-  @Column({ type: DataType.STRING, allowNull: false })
+  @Column({ type: DataType.STRING(510), allowNull: false })
   title: string
 
   @ApiProperty({ example: 'Текст', description: 'Текст' })
-  @Column({ type: DataType.STRING, allowNull: false })
+  @Column({ type: DataType.STRING(4080), allowNull: false })
   content: string
 
   @ApiProperty({ example: 'image.jpg', description: 'Картинка' })

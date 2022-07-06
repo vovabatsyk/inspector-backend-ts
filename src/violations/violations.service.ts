@@ -65,12 +65,12 @@ export class ViolationsService {
     throw new HttpException('Помилка видалення порушення по id', HttpStatus.BAD_REQUEST)
   }
 
-  async update(id, dto: CreateViolationDto) {
-    const violation = await this.violationRepository.update({ ...dto }, { where: { id } })
-    if (violation) {
-      return violation
-    }
+  // async update(id, dto: CreateViolationDto) {
+  //   const violation = await this.violationRepository.update({ ...dto }, { where: { id } })
+  //   if (violation) {
+  //     return violation
+  //   }
 
-    throw new HttpException('Помилка оновлення порушення по id', HttpStatus.BAD_REQUEST)
-  }
+  //   throw new HttpException('Помилка оновлення порушення по id', HttpStatus.BAD_REQUEST)
+  // }
 }
