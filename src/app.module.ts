@@ -29,6 +29,8 @@ import { ViolationAdmin } from './violation-admin/violation-admin.model'
 import { TokenModule } from './token/token.module'
 import { Token } from './token/token.model'
 import { UnipImagesModule } from './unip-images/unip-images.module'
+import { ViolationPaymentsModule } from './violation-payments/violation-payments.module'
+import { ViolationPayment } from './violation-payments/violation-payments.model'
 
 @Module({
   controllers: [],
@@ -60,6 +62,7 @@ import { UnipImagesModule } from './unip-images/unip-images.module'
         ViolationStory,
         ViolationAdmin,
         Token,
+        ViolationPayment,
       ],
       autoLoadModels: true,
     }),
@@ -77,6 +80,7 @@ import { UnipImagesModule } from './unip-images/unip-images.module'
     ViolationAdminModule,
     TokenModule,
     UnipImagesModule,
+    ViolationPaymentsModule,
   ],
 })
 export class AppModule {}

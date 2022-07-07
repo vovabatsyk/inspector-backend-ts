@@ -43,6 +43,7 @@ export class ViolationsService {
     const violations = await this.violationRepository.findAll({
       where: { car_number },
     })
+    console.log(violations)
 
     if (violations) {
       return violations
