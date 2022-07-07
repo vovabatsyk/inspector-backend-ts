@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { Model, Table, Column, DataType, BelongsTo, ForeignKey } from 'sequelize-typescript'
-import { User } from 'src/users/user.model'
 import { Violation } from 'src/violations/violation.model'
 
 interface ViolationImagesCreationAttrs {
