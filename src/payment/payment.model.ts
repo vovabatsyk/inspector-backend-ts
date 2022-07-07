@@ -9,7 +9,7 @@ interface PaymentCreationAttrs {
   purpose: string
 }
 
-@Table({ tableName: 'payment' })
+@Table({ tableName: 'payment', createdAt: false, updatedAt: false })
 export class Payment extends Model<Payment, PaymentCreationAttrs> {
   @ApiProperty({ example: '1', description: 'Ідентифікатор' })
   @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })

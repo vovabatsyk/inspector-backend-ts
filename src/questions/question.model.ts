@@ -6,7 +6,7 @@ interface QuestionCreationAttrs {
   description: string
 }
 
-@Table({ tableName: 'questions' })
+@Table({ tableName: 'questions', updatedAt: false, createdAt: false })
 export class Question extends Model<Question, QuestionCreationAttrs> {
   @ApiProperty({ example: '1', description: 'Ідентифікатор' })
   @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })

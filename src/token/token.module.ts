@@ -8,5 +8,6 @@ import { TokenService } from './token.service'
   controllers: [TokenController],
   providers: [TokenService],
   imports: [SequelizeModule.forFeature([Token])],
+  exports: [TokenService],
 })
 export class TokenModule {}

@@ -28,6 +28,7 @@ import { ViolationAdminModule } from './violation-admin/violation-admin.module'
 import { ViolationAdmin } from './violation-admin/violation-admin.model'
 import { TokenModule } from './token/token.module'
 import { Token } from './token/token.model'
+import { UnipImagesModule } from './unip-images/unip-images.module'
 
 @Module({
   controllers: [],
@@ -75,6 +76,7 @@ import { Token } from './token/token.model'
     ViolationStoryModule,
     ViolationAdminModule,
     TokenModule,
+    UnipImagesModule,
   ],
 })
 export class AppModule {}
